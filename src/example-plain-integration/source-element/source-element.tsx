@@ -1,5 +1,5 @@
-import { useEffect, useRef } from "react"
-import { useGhostDND } from "../../lib"
+import { useRef } from "react"
+import { useGhostDNDBindSource } from "../../lib"
 import { GhostTokens } from "../types"
 import {
   StyledGhost1,
@@ -15,43 +15,24 @@ const SourceElement = (props: SourceElementProps) => {
   const { label } = props
 
   const draggedElementRef = useRef<HTMLDivElement>(null)
-
-  const { setSourceConfig, setRenderGhost } = useGhostDND()
-
-  useEffect(() => {
-    const draggedElement = draggedElementRef.current
-    if (!draggedElement) return
-
-    const handleMouseDown = () => {
-      setSourceConfig({ sourceElement: draggedElement })
-
-      setRenderGhost((token) => {
-        const ghostToken = token as GhostTokens | ""
-        if (ghostToken === "") {
-          return <SourceElement {...props} />
-        }
-
-        if (ghostToken === "over-target-1") {
-          return (
-            <StyledGhost1>Custom Ghost for {label} - over Target1</StyledGhost1>
-          )
-        }
-
-        if (ghostToken === "over-target-2") {
-          return (
-            <StyledGhost2>Custom Ghost for {label} - over Target2</StyledGhost2>
-          )
-        }
-      })
+  useGhostDNDBindSource(draggedElementRef, (token) => {
+    const ghostToken = token as GhostTokens | ""
+    if (ghostToken === "") {
+      return <SourceElement {...props} />
     }
 
-    draggedElement.addEventListener("mousedown", handleMouseDown)
-
-    return () => {
-      draggedElement.removeEventListener("mousedown", handleMouseDown)
+    if (ghostToken === "over-target-1") {
+      return (
+        <StyledGhost1>Custom Ghost for {label} - over Target1</StyledGhost1>
+      )
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+
+    if (ghostToken === "over-target-2") {
+      return (
+        <StyledGhost2>Custom Ghost for {label} - over Target2</StyledGhost2>
+      )
+    }
+  })
 
   return (
     <StyledSourceElement

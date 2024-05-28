@@ -10,10 +10,10 @@ import {
 } from "react"
 import { createPortal } from "react-dom"
 
-type SourceElement = HTMLElement
+export type SourceElement = HTMLElement
 
-type DropTargetElement = HTMLElement
-type RenderGhost = (token: string) => ReactNode
+export type DropTargetElement = HTMLElement
+export type RenderGhost = (token: string) => ReactNode
 
 type SourceConfig = {
   sourceElement: SourceElement
