@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react"
 import { GhostTokens } from "../types"
-import "./target-element.css"
 import { useGhostDND } from "../../lib"
+import { StyledTargetElement } from "./target-element.styled"
 
 interface TargetElementProps extends React.HTMLAttributes<HTMLDivElement> {
   token: GhostTokens
@@ -30,9 +30,9 @@ const TargetElement = (props: TargetElementProps) => {
   }, [token])
 
   return (
-    <div ref={dropboxRef} className={"target-element"} {...rest}>
+    <StyledTargetElement ref={dropboxRef} {...rest}>
       <h2>{title}</h2>
-    </div>
+    </StyledTargetElement>
   )
 }
 

@@ -1,7 +1,11 @@
 import { useEffect, useRef } from "react"
 import { useGhostDND } from "../../lib"
-import "./source-element.css"
 import { GhostTokens } from "../types"
+import {
+  StyledGhost1,
+  StyledGhost2,
+  StyledSourceElement,
+} from "./source-element.styled"
 
 interface SourceElementProps extends React.HTMLAttributes<HTMLDivElement> {
   label: string
@@ -29,31 +33,13 @@ const SourceElement = (props: SourceElementProps) => {
 
         if (ghostToken === "over-target-1") {
           return (
-            <div
-              style={{
-                color: "black",
-                backgroundColor: "lime",
-                padding: 16,
-                borderRadius: 16,
-              }}
-            >
-              Custom Ghost for {label} - over Target1
-            </div>
+            <StyledGhost1>Custom Ghost for {label} - over Target1</StyledGhost1>
           )
         }
 
         if (ghostToken === "over-target-2") {
           return (
-            <div
-              style={{
-                color: "black",
-                backgroundColor: "aqua",
-                padding: 8,
-                borderRadius: 8,
-              }}
-            >
-              Custom Ghost for {label} - over Target2
-            </div>
+            <StyledGhost2>Custom Ghost for {label} - over Target2</StyledGhost2>
           )
         }
       })
@@ -68,14 +54,14 @@ const SourceElement = (props: SourceElementProps) => {
   }, [])
 
   return (
-    <div
+    <StyledSourceElement
       ref={draggedElementRef}
       className={"source-element"}
       draggable
       {...props}
     >
       {label}
-    </div>
+    </StyledSourceElement>
   )
 }
 

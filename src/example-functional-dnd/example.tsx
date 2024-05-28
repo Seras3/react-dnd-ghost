@@ -1,7 +1,7 @@
 import { useState } from "react"
-import "./example.css"
 import SourceElement from "./source-element/source-element"
 import TargetElement from "./target-element/target-element"
+import { StyledExample } from "./example.styled"
 
 const Example = () => {
   const [sourceElements, setSourceElements] = useState(["Source 1", "Source 2"])
@@ -14,7 +14,7 @@ const Example = () => {
   }
 
   return (
-    <>
+    <StyledExample>
       <div className="source-group">
         {sourceElements.map((element, index) => (
           <SourceElement key={index} label={element} />
@@ -58,7 +58,7 @@ const Example = () => {
           />
         </TargetElement>
       </div>
-    </>
+    </StyledExample>
   )
 }
 

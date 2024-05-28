@@ -1,4 +1,6 @@
-.source-element {
+import styled from "styled-components"
+
+export const StyledSourceElement = styled.div`
   width: 100px;
   height: 100px;
   display: flex;
@@ -6,23 +8,23 @@
   align-items: center;
   background-color: #4444bb;
   color: white;
-}
 
-.source-element:hover {
-  background-color: #5555bb;
-  cursor: grab;
-}
+  &:hover {
+    background-color: #5555bb;
+    cursor: grab;
+  }
+`
 
-.ghost-1 {
+export const StyledGhost1 = styled.div`
   background-color: purple;
   border-radius: 20px;
   padding: 40px;
   color: white;
-}
+`
 
-.ghost-2 {
+export const StyledGhost2 = styled.div`
   background-color: pink;
   border-radius: 20px;
   padding: 40px;
   color: black;
-}
+`

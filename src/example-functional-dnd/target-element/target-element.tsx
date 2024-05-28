@@ -1,12 +1,15 @@
 import { useEffect, useRef, useState } from "react"
 import { GhostTokens } from "../types"
-import "./target-element.css"
 import { useGhostDND } from "../../lib"
+import {
+  StyledTargetElement,
+  StyledTargetElementProps,
+} from "./target-element.styled"
 
 interface TargetElementProps extends React.HTMLAttributes<HTMLDivElement> {
   token: GhostTokens
   title: string
-  styleType: "t1" | "t2"
+  styleType: StyledTargetElementProps["variant"]
 }
 
 const TargetElement = (props: TargetElementProps) => {
@@ -68,11 +71,10 @@ const TargetElement = (props: TargetElementProps) => {
   }, [])
 
   return (
-    <div
+    <StyledTargetElement
       ref={dropboxRef}
-      className={`target-element ${styleType} ${
-        isDraggingOver ? "drag-over" : ""
-      }`}
+      variant={styleType}
+      className={isDraggingOver ? "drag-over" : ""}
       onDrop={handleOnDrop}
       {...rest}
     >
@@ -83,7 +85,7 @@ const TargetElement = (props: TargetElementProps) => {
         ))}
       </div>
       {children}
-    </div>
+    </StyledTargetElement>
   )
 }
 

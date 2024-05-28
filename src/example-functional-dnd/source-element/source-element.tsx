@@ -1,7 +1,11 @@
 import { useEffect, useRef } from "react"
 import { useGhostDND } from "../../lib"
-import "./source-element.css"
 import { GhostTokens } from "../types"
+import {
+  StyledGhost1,
+  StyledGhost2,
+  StyledSourceElement,
+} from "./source-element.styled"
 
 interface SourceElementProps extends React.HTMLAttributes<HTMLDivElement> {
   label: string
@@ -33,11 +37,11 @@ const SourceElement = (props: SourceElementProps) => {
         }
 
         if (ghostToken === "ghost-1") {
-          return <div className="ghost-1">Custom Ghost dragging: {label}</div>
+          return <StyledGhost1>Custom Ghost dragging: {label}</StyledGhost1>
         }
 
         if (ghostToken === "ghost-2") {
-          return <div className="ghost-2">Custom Ghost dragging: {label}</div>
+          return <StyledGhost2>Custom Ghost dragging: {label}</StyledGhost2>
         }
       })
     }
@@ -51,7 +55,7 @@ const SourceElement = (props: SourceElementProps) => {
   }, [])
 
   return (
-    <div
+    <StyledSourceElement
       ref={draggedElementRef}
       className={"source-element"}
       draggable
@@ -59,7 +63,7 @@ const SourceElement = (props: SourceElementProps) => {
       {...props}
     >
       {label}
-    </div>
+    </StyledSourceElement>
   )
 }
 
