@@ -1,4 +1,11 @@
-import { createContext, ReactNode, useContext, useRef, useState } from "react"
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react"
 import { noop } from "./utils/noop"
 import { CustomDragLayer } from "./custom-drag-layer"
 
@@ -45,6 +52,15 @@ const GhostDNDMultiProvider = (props: Props) => {
       setToken(token)
     }
   }
+
+  useEffect(() => {
+    const handleGlobalDragover = (event: DragEvent) => event.preventDefault()
+
+    document.addEventListener("dragover", handleGlobalDragover)
+    return () => {
+      document.removeEventListener("dragover", handleGlobalDragover)
+    }
+  }, [])
 
   return (
     <GhostDNDMultiContext.Provider
